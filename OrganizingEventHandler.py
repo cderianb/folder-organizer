@@ -48,16 +48,12 @@ class OrganizingEventHandler(FileSystemEventHandler):
         print(f'now handling {self.event.src_path}')
         
         if self.file_ext in ignore_exts:
-            print('ignored')
             return
         if len(self.file_ext.strip()) == 0:
-            print(f'folder only')
             return # folder only
         if len((self.event.src_path.replace(f'{self.root}\\', '')).split('\\')) > 1:
-            print(f'not handle {self.event.src_path}')
             return
         
-        print('working')
         self.file_name = file_path.split('\\')[-1]
 
         if self.file_ext in docs_exts:
@@ -81,7 +77,6 @@ class OrganizingEventHandler(FileSystemEventHandler):
             # count for duplicated file
             count = len(glob.glob(f'{self.root}\\{type}\\{self.file_name}*{self.file_ext}'))
             new_path = f'{self.root}\\{type}\\{self.file_name} ({count}) {self.file_ext}'
-        print(f'moving {self.event.src_path} to {new_path}')
         shutil.move(self.event.src_path, new_path)
 
         #ganti jadi notif win10toast
