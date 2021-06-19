@@ -26,11 +26,6 @@ class OrganizingEventHandler(FileSystemEventHandler):
             self.handle_event(event)
 
     def on_deleted(self, event):
-        # return super().on_deleted(event)
-        ###
-        #  TODO: after 30 days, moved to recycle bin
-        # trus kasih notif di recycle bin selama 30hari baru permanen delete
-        ###
         return NotImplementedError
     
     def on_modified(self, event):
